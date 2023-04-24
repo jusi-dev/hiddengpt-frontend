@@ -50,7 +50,7 @@ class App extends React.Component {
   
   componentDidMount() {
     console.log('Test Mout');
-    this.getSingleCacheData("OTAC", 'http://jusi-dev.ddns.net:3000')
+    this.getSingleCacheData("OTAC", 'http://jusi-dev.ddns.net:3000/')
   }
 
   verifyOTAC = (inputValue) => {
@@ -69,7 +69,7 @@ class App extends React.Component {
             alert("Login successfull!")
             this.setState({ route: 'home' }, () => {
               console.log("Logged in: ", this.state.loggedIn);
-              addDataIntoCache('OTAC', 'http://jusi-dev.ddns.net:3000', this.state.route)
+              addDataIntoCache('OTAC', 'http://jusi-dev.ddns.net:3000/', this.state.route)
             })
           }
         })
