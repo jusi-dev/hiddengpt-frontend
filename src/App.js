@@ -27,6 +27,7 @@ class App extends React.Component {
   }
 
   getSingleCacheData = async (cacheName, url) => {
+    alert("Got cache");
     if (typeof caches === 'undefined') return false;
     
     const cacheStorage = await caches.open(cacheName);
@@ -62,7 +63,7 @@ class App extends React.Component {
           if (data === 'success') {
             alert("Login successfull!")
             this.setState({ route: 'home' }, () => {
-              console.log("Logged in: ", this.state.loggedIn);
+              console.log("Logged in: ", this.state.loggedIn)
               addDataIntoCache('OTAC', 'http://jusi-dev.ddns.net:3000/', this.state.route)
             })
           }
