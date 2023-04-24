@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Navigation extends React.Component{
-    constructor() {
-        super();
-    }
-
     handleSignIn = () => {
         console.log('SignIn');
     }

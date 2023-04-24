@@ -3,10 +3,6 @@ import { Helmet } from 'react-helmet';
 import BindPic from './img/bindconf1.png';
 
 class ArticleBind9 extends React.Component{
-    constructor(props) {
-        super(props);
-      }
-
     render() {
         return (
             <div className='mr-8'>
