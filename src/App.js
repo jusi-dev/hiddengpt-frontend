@@ -7,17 +7,11 @@ import SideNavigation from './components/SideNavigation/SideNavigation';
 import AlphaLogin from './components/AlphaLogin/AlphaLogin';
 
 // Function to add our give data into cache
-const addDataIntoCache = (cacheName, url, response) => {
-  // Converting our response into Actual Response form
+const addDataIntoCache = async (cacheName, url, response) => {
   const data = new Response(JSON.stringify(response));
-
-  if ('caches' in window) {
-    // Opening given cache and putting our data into it
-    caches.open(cacheName).then((cache) => {
-      cache.put(url, data);
-      alert('Data Added into cache!')
-    });
-  }
+  const cache = await caches.open(cacheName);
+  await cache.put(url, data);
+  alert('Data added to cache!');
 };
 
 class App extends React.Component {
