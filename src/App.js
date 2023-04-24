@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './components/Home/Home';
+// import Home from './components/Home/Home';
 import ArticleBind9 from './components/ArticleBind9/ArticleBind9';
 import Navigation from './components/Navigation/Navigation';
 import CommentInput from './components/CommentInput/CommentInput';
