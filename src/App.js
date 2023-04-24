@@ -53,11 +53,11 @@ class App extends React.Component {
   
   componentDidMount() {
     console.log('Test Mout');
-    this.getSingleCacheData("OTAC", 'http://jusi-dev.ddns.net:3000/')
+    this.getSingleCacheData("OTAC", 'https://stuff-explained.netlify.app/')
   }
 
   verifyOTAC = (inputValue) => {
-    fetch('http://jusi-dev.ddns.net:3030/api/checkOTAC', {
+    fetch('https://hiddengpt-backend.onrender.com/api/checkOTAC', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ class App extends React.Component {
             alert("Login successfull!")
             this.setState({ route: 'home' }, () => {
               console.log("Logged in: ", this.state.loggedIn)
-              addDataIntoCache('OTAC', 'http://jusi-dev.ddns.net:3000/', this.state.route)
+              addDataIntoCache('OTAC', 'https://stuff-explained.netlify.app/', this.state.route)
             })
           }
         })
@@ -85,7 +85,7 @@ class App extends React.Component {
       this.state.messageHistory.push({ "role": "user", "content": this.state.inputComment });
       console.log(this.state.messageHistory)
 
-      fetch('http://jusi-dev.ddns.net:3030/api/getReply', {
+      fetch('https://hiddengpt-backend.onrender.com/api/getReply', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
