@@ -8,6 +8,7 @@ import AlphaLogin from './components/AlphaLogin/AlphaLogin';
 
 // Function to add our give data into cache
 const addDataIntoCache = async (cacheName, url, response) => {
+  alert('Adding data into cache')
   const data = new Response(JSON.stringify(response));
   const cache = await caches.open(cacheName);
   await cache.put(url, data);
