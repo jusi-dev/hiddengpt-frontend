@@ -34,7 +34,8 @@ class App extends React.Component {
         route: 'login',
         individualArticle: "",
         gotAnswer: false,
-        setArticleTitle: ''
+        setArticleTitle: 'How to Setup Bind (DNS Server) on Ubuntu 22.04',
+        isFetching: false
     }
   }
 
@@ -88,6 +89,7 @@ class App extends React.Component {
       console.log(this.state.inputComment);
       this.state.messageHistory.push({ "role": "user", "content": this.state.inputComment });
       console.log(this.state.messageHistory)
+      this.setState({ isFetching: true });
 
       fetch('https://hiddengpt-backend.onrender.com/api/getReply', {
         method: 'POST',
@@ -100,6 +102,7 @@ class App extends React.Component {
       })
         .then(response => response.json())
         .then((data) => {
+          this.setState({ isFetching: false });
           let matchCount = 0;
           this.state.messageHistory.push(data);
           const msgContent = data.content;
@@ -109,8 +112,8 @@ class App extends React.Component {
           });
           this.setState({ generatedAnswer: editedContent});
           this.setState({ gotAnswer: false });
-          this.setState({ setArticleTitle: inputValue});
-          alert("DEBUG: Comment posted successfully! ;)");
+          this.setState({ setArticleTitle: 'How to Setup Bind (DNS Server) on Ubuntu 22.04'});
+          console.log("DEBUG: Comment posted successfully! ;)");
         })
         .catch((error) => {
           console.error(error);
@@ -123,6 +126,7 @@ class App extends React.Component {
     this.setState({ inputComment: inputValue }, () => {
       this.state.messageHistory.push({ "role": "user", "content": this.state.inputComment });
       console.log(this.state.messageHistory)
+      this.setState({ isFetching: true });
 
       fetch('https://hiddengpt-backend.onrender.com/api/getReply', {
         method: 'POST',
@@ -135,6 +139,7 @@ class App extends React.Component {
       })
         .then(response => response.json())
         .then((data) => {
+          this.setState({ isFetching: false });
           let matchCount = 0;
           this.state.messageHistory.push(data);
           const msgContent = data.content;
@@ -144,7 +149,8 @@ class App extends React.Component {
           });
           this.setState({ generatedAnswer: editedContent});
           this.setState({ gotAnswer: true });
-          alert("DEBUG: Comment posted successfully! ;)");
+          this.setState({ setArticleTitle: inputValue});
+          console.log("DEBUG: Comment posted successfully! ;)");
         })
         .catch((error) => {
           console.error(error);
@@ -156,14 +162,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App bg-neutral-200 pt-24 h-full overflow-x-hidden">
-        <Navigation searchBarInput={this.searchBarApply}/>
+        <Navigation searchBarInput={this.searchBarApply} fetchLoader={this.state.isFetching} />
         {/* <Home /> */}
         { this.state.route === 'home'
           ? <div>
               <div className='flex flex-row'>
                 {/* <ArticleBind9 generatedAnswer={this.state.generatedAnswer} /> */}
-                <ArticleIndividual userTitle={this.state.inputComment} generatedAnswer={this.state.generatedAnswer} gotAnswer={this.state.gotAnswer} />
-                <SideNavigation />
+                <ArticleIndividual userTitle={this.state.setArticleTitle} generatedAnswer={this.state.generatedAnswer} gotAnswer={this.state.gotAnswer} />
+                <SideNavigation setTitle={this.state.setArticleTitle} />
               </div>
               <CommentInput commentInput={this.commentApply} />
             </div>

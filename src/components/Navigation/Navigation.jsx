@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from '../SearchBar/SearchBar';
+import './Navigation.css'
 
 class Navigation extends React.Component{
     handleSignIn = () => {
@@ -34,6 +35,7 @@ class Navigation extends React.Component{
 
                 <div className='md:flex-row md:flex w-full flex-col md:pt-0 pt-10 hidden' ref={element => this.burgerRef = element}>
                     <button className='cursor-pointer md:ml-auto'><SearchBar searchBarInput={this.props.searchBarInput}/></button>
+                    { this.props.fetchLoader === true ? <div className="load my-auto pl-4"><div className="load-circle"></div></div>: <></>}
                     <button onClick={this.handleRegister} className='cursor-pointer md:pl-10 pt-2 md:pt-0'>How To</button>
                     <button onClick={this.handleSignIn} className='cursor-pointer md:pl-10 pt-2 md:pt-0'>IT</button>
                     <button onClick={this.handleSignIn} className='cursor-pointer md:pl-10 pt-2 md:pt-0'>Math</button>
