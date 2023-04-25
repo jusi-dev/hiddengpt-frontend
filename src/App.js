@@ -33,7 +33,8 @@ class App extends React.Component {
         loggedIn: false,
         route: 'login',
         individualArticle: "",
-        gotAnswer: false
+        gotAnswer: false,
+        setArticleTitle: ''
     }
   }
 
@@ -108,6 +109,7 @@ class App extends React.Component {
           });
           this.setState({ generatedAnswer: editedContent});
           this.setState({ gotAnswer: false });
+          this.setState({ setArticleTitle: inputValue});
           alert("DEBUG: Comment posted successfully! ;)");
         })
         .catch((error) => {
